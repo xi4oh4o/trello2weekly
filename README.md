@@ -1,15 +1,15 @@
 redmine2weekly
 ==============
 
-获取Redmine一周的issue并生成周报发送至指定邮箱
+获取Trello卡片checklist并生成周报发送至指定邮箱
 
-![image](http://ww3.sinaimg.cn/large/6209f836gw1elbptuwho5j20to0vuwpi.jpg)
+![image](http://ww2.sinaimg.cn/large/6209f836gw1ellihnwa0jj20pw0uo462.jpg)
 
 ### 功能特性
 
 - 支持自定义Mailgun账户
-- 根据Redmine REST API
-- 获取Redmine一周issue并生成周报展示
+- 根据Trello REST API
+- 获取Trello卡片中检查表并生成周报展示
 - 发送周报到指定收件人
 
 ### 本地运行
