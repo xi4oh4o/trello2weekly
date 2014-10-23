@@ -5,17 +5,20 @@
   <div class="nav">
   <% if params.empty? %>
     <h3><span class="glyphicon glyphicon-th"></span> 请选择白板:</h3>
+    <br>
     <% @html.each do |v| %>
       <a href="/boards/<%= v['id']%>"><%= v['name']%></a>
     <% end %>
   <% elsif params['board_id'] %>
-    <h4><span class="glyphicon glyphicon-th-list"></span> 请选择列表:</h4>
+    <h3><span class="glyphicon glyphicon-th-list"></span> 请选择列表:</h3>
+    <br>
     <% @html.each do |v| %>
       <a href="/lists/<%= v['id']%>"><%= v['name']%></a>
     <% end %>
     <a href="javascript:;" onClick="javascript :history.back(-1);" style="color: #E83015">返回白板</a>
   <% elsif params['list_id'] %>
-    <h4><span class="glyphicon glyphicon-list"></span> 请选择卡片: </h4>
+    <h3><span class="glyphicon glyphicon-list"></span> 请选择卡片: </h3>
+    <br>
       <% @html.each do |v| %>
         <a href="/card/<%= v['id']%>"><%= v['name']%></a>
       <% end %>
@@ -48,6 +51,11 @@
 <% else %>
   <span>生成报告需要先保存相关设定</span>
 <% end %>
+<hr>
+<h3><span class="glyphicon glyphicon-question-sign"></span> 帮助</h3>
+<br>
+<p>请先于Trello相应的"列表"中建立一个"卡片"，周报表格标题将显示为卡片中"Checklist"的名称而内容显示则为"Checklist item"</p>
+<p>一个例子 <a href="https://trello.com/c/Z2LQKI74" target="_blank">第八周周报</a> </p>
 <hr>
 <h3><span class="glyphicon glyphicon-cog"></span> 设定 </h3>
 <br>
