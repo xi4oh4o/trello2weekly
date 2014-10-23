@@ -226,12 +226,23 @@ get '/user/:name/remove_key' do
     if @auth
       @auth.key = ''
       if @auth.save
-        redirect '/', :notice => 'Congrats! 您已成功移除Redmine Key.'
+        redirect '/', :notice => 'Congrats! 您已成功移除Trello Token.'
       end
     end
   end
 end
 
+get '/user/:name/remove_realname' do
+  if session['username'] == params['name']
+    @auth = Auth.find_by(username: params['name'])
+    if @auth
+      @auth.real_name = ''
+      if @auth.save
+        redirect '/', :notice => 'Congrats! 您已成功移除显示名称.'
+      end
+    end
+  end
+end
 
 get '/user/:name/remove_emails' do
   if session['username'] == params['name']
