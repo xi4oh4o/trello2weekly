@@ -1,0 +1,104 @@
+<div class="page-header">
+  <h1>Trello Weekly to Email<small> 获取 Trello Card 生成周报并发送 Email</small></h1>
+</div>
+<h2><span class="glyphicon glyphicon-list-alt"></span> 本周工作报告 <small><%=takeFivedayRange[0]%> - <%=takeFivedayRange[1]%></small></h2>
+<br>
+<% unless @html.to_s.empty? %>
+  <% if params.empty? %>
+  <span>请选择白板</span>
+    <% @html.each do |v| %>
+      <a href="/boards/<%= v['id']%>"><%= v['name']%></a>
+    <% end %>
+  <% elsif params['board_id'] %>
+    <span>请选择列表</span>
+    <% @html.each do |v| %>
+      <a href="/lists/<%= v['id']%>"><%= v['name']%></a>
+    <% end %>
+  <% elsif params['list_id'] %>
+    <span>请选择卡片</span>
+      <% @html.each do |v| %>
+        <a href="/card/<%= v['id']%>"><%= v['name']%></a>
+      <% end %>
+    <% else %>
+
+<% @html.each do |v| %>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th><span style="color: #8E354A; font-size: 1.3em;"><%=v['name']%></span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% v['checkItems'].each do |item| %>
+    <tr>
+      <th><%=item['name']%> (<%=solveState(item['state'])%>)</th>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<div>
+  <a href="/user/<%=session['username']%>/send/<%=params['card_id']%>"><button type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-send"></span> 发送周报</button></a>
+</div>
+<% end %>
+<% end %>
+<hr>
+<h3><span class="glyphicon glyphicon-cog"></span> Trello 授权</h3>
+<br>
+  <p>
+    <% unless @auth.key.to_s.empty? %>
+      <span><span class="glyphicon glyphicon-thumbs-up"></span> 您已提交过Trello Token</span>
+      <a href="/user/<%=session['username']%>/remove_key"><p><button type="button" class="btn btn-primary btn-xs btn-danger"><span class="glyphicon glyphicon-link"></span> 移除Key?</button></a>
+    <% else %>
+      <form action="/" method="post"role="form">
+      <div class="form-group">
+        <label for="key">Trello token:</label>
+        <br>
+        <input id="key" class="form-control" name="auth[key]" type="text" value="" style="width=90%"/>
+      </div>
+      <button type="submit" class="btn btn-success">保存</button>
+      </form>
+      <br>
+      <a href="https://trello.com/1/authorize?key=54eb7d2a2332d6d5a0a03ce958b04d44&name=trello2weekly&expiration=never&response_type=token" target="_blank">点击获取Token</a>
+      <small><span class="glyphicon glyphicon-info-sign"></span> 点击获取后，请将新弹出页面上的一串token字符保存至这里</small>
+    <% end %>
+  </p>
+  <p>
+    <% unless @auth.real_name.to_s.empty? %>
+      <span><span class="glyphicon glyphicon-thumbs-up"></span> 您已设置邮件标题展示姓名</span>
+      <a href="/user/<%=session['username']%>/remove_realname"><p><button type="button" class="btn btn-primary btn-xs btn-danger"><span class="glyphicon glyphicon-link"></span> 移除展示姓名?</button></a>
+    <% else %>
+      <form action="/" method="post"role="form">
+      <div class="form-group">
+        <label for="real_name">邮件标题展示姓名:</label>
+        <br>
+        <input id="real_name" class="form-control" name="auth[real_name]" type="text" value="" style="width=90%"/>
+      </div>
+      <button type="submit" class="btn btn-success">保存</button>
+      </form>
+      <br>
+      <small><span class="glyphicon glyphicon-info-sign"></span> 真实姓名将在周报邮件标题中展示</small>
+    <% end %>
+  </p>
+  <p>
+    <% unless @auth.email.to_s.empty? %>
+      <span><span class="glyphicon glyphicon-thumbs-up"></span> 您已提交过收件人邮箱</span>
+      <% @auth.email.split(/,/).each do |email| %>
+        <ul>
+          <li><%=email%></li>
+        </ul>
+      <% end %>
+      <a href="/user/<%=session['username']%>/remove_emails"><button type="button" class="btn btn-primary btn-xs btn-danger"><span class="glyphicon glyphicon-link"></span> 移除邮箱列表?</button></a>
+    <% else %>
+      <form action="/" method="post"role="form">
+      <div class="form-group">
+        <label for="email">收件人邮箱列表:</label>
+        <br>
+        <input id="email" class="form-control" name="auth[email]" type="text" value="" style="width=90%"/>
+      </div>
+      <button type="submit" class="btn btn-success">保存</button>
+      </form>
+      <br>
+      <small><span class="glyphicon glyphicon-info-sign"></span> 保存一个或一组周报收件人邮箱，用逗号分隔</small>
+    <% end %>
+  </p>
