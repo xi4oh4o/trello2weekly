@@ -40,7 +40,7 @@ helpers do
 
   def takeFivedayRange
     d = Date.today
-    five_days_range = [ (d - 5).to_s, d ]
+    five_days_range = [ (d - 4).to_s, d ]
     return five_days_range
   end
 
