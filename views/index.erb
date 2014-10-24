@@ -49,7 +49,7 @@
   </div>
   <% end %>
 <% else %>
-  <span>生成报告需要先保存相关设定</span>
+  <h3><span class="glyphicon glyphicon-exclamation-sign"></span> 生成报告需要先保存相关设定</h3>
 <% end %>
 <hr>
 <h3><span class="glyphicon glyphicon-question-sign"></span> 帮助</h3>
@@ -73,7 +73,7 @@
       <button type="submit" class="btn btn-success">保存</button>
       </form>
       <br>
-      <a href="https://trello.com/1/authorize?key=54eb7d2a2332d6d5a0a03ce958b04d44&name=trello2weekly&expiration=never&response_type=token" target="_blank">点击获取Token</a>
+      <a href="https://trello.com/1/authorize?key=<%=::CONF['Key']%>&name=trello2weekly&expiration=never&response_type=token" target="_blank">点击获取Token</a>
       <small><span class="glyphicon glyphicon-info-sign"></span> 点击获取后，请将新弹出页面上的一串token字符保存至这里</small>
     <% end %>
   </p>
