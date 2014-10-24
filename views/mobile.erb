@@ -1,0 +1,13 @@
+<div style="font-family:Times New Roman;font-size:x-small;">
+<% @html.each do |v| %>
+  <div>
+    <font color="#8E354A" size="4"><%=v['name']%></font>
+  </div>
+  <% v['checkItems'].each do |item| %>
+  <div>
+    <font size="2"><%=item['name']%></font>
+  </div>
+  <% end %>
+  <br>
+<% end %>
+</div>

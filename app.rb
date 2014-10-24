@@ -193,15 +193,19 @@ post ('/') do
   end
 end
 
-get '/user/:name/send/:id' do
-
+get '/user/:name/send/:id/:ver' do
 
   if session['username']
     @auth = Auth.find_by(username: session['username'])
     if @auth
 
       @html = getChecklist(@auth.key, params['id'])
-      email_body = erb :mail, layout: false, locals: {fields: @html}
+
+      if params['ver'] == 'mobile'
+        email_body = erb :mobile, layout: false, locals: {fields: @html}
+      else
+        email_body = erb :mail, layout: false, locals: {fields: @html}
+      end
 
       if @auth.email
         @auth.email.split(',').each do |email|
