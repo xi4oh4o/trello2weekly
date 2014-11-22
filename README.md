@@ -49,3 +49,5 @@ $ [sudo] git push -u heroku master
 ````
 $ [sudo] heroku rake db:migrate
 ````
+
+[ ![Codeship Status for xi4oh4o/trello2weekly](https://codeship.com/projects/8eb020e0-c515-0131-98c2-5a1ddad26e1f/status)](https://codeship.com/projects/21996)
