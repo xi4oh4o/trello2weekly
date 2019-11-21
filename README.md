@@ -1,4 +1,4 @@
-redmine2weekly
+trello2weekly
 ==============
 
 获取Trello卡片checklist并生成周报发送至指定邮箱
