@@ -3,7 +3,7 @@ redmine2weekly
 
 获取Trello卡片checklist并生成周报发送至指定邮箱
 
-![image](http://ww2.sinaimg.cn/large/6209f836gw1ellihnwa0jj20pw0uo462.jpg)
+![image](https://user-images.githubusercontent.com/141127/69301609-cf6af900-0c51-11ea-86b5-7b01d55296ac.jpg)
 
 ### 功能特性
 
